@@ -1,13 +1,42 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@import './vendor/normalize.css';
+@import './vendor/fonts/inter.css';
+@import './blocks/root/root.css';
+@import './blocks/page/page.css';
+@import './blocks/header/header.css';
+@import './blocks/header/__logo/header__logo.css';
+@import './blocks/profile/profile.css';
+@import './blocks/profile/__avatar-container/profile__avatar-container.css';
+@import './blocks/profile/__avatar/profile__avatar.css';
+@import './blocks/profile/__avatar-edit/profile__avatar-edit.css';
+@import './blocks/profile/__info/profile__info.css';
+@import './blocks/profile/__name/profile__name.css';
+@import './blocks/profile/__caption/profile__caption.css';
+@import './blocks/profile/__edit-button/profile__edit-button.css';
+@import './blocks/profile/__add-button/profile__add-button.css';
+@import './blocks/cards/cards.css';
+@import './blocks/card/card.css';
+@import './blocks/card/__image/card__image.css';
+@import './blocks/card/__delete-button/card__delete-button.css';
+@import './blocks/card/__delete-button/_hidden/card__delete-button_hidden.css';
+@import './blocks/card/__caption/card__caption.css';
+@import './blocks/card/__name/card__name.css';
+@import './blocks/card/__like-display/card__like-display.css';
+@import './blocks/card/__like-button/card__like-button.css';
+@import './blocks/card/__like-button/_active/card__like-button_active.css';
+@import './blocks/card/__like-counter/card__like-counter.css';
+@import './blocks/footer/footer.css';
+@import './blocks/footer/__copyright/footer__copyright.css';
+@import './blocks/popup/popup.css';
+@import './blocks/popup/_opened/popup_opened.css';
+@import './blocks/popup/__container/popup__container.css';
+@import './blocks/popup/__close/popup__close.css';
+@import './blocks/popup/__caption/popup__caption.css';
+@import './blocks/popup/__text/popup__text.css';
+@import './blocks/popup/__text-error/popup__text-error.css';
+@import './blocks/popup/__text/_type/popup__text_type_error.css';
+@import './blocks/popup/__submit/popup__submit.css';
+@import './blocks/popup/__submit/_active/popup__submit_active.css';
+@import './blocks/popup-card/popup-card.css';
+@import './blocks/popup/__image-container/popup__image-container.css';
+@import './blocks/popup/__image/popup__image.css';
+@import './blocks/popup/__figcaption/popup__figcaption.css';
