@@ -24,4 +24,4 @@
 
 **Превью сайта**
 
-* [Превью](https://voltrein-code.github.io/mesto/)
+* [Превью](https://voltrein-code.github.io/mesto-react/)
