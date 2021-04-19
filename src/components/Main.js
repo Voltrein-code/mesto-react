@@ -1,5 +1,5 @@
 import React from 'react';
-import Api from '../utils/api';
+import api from '../utils/api';
 import Card from './Card';
 
 function Main(props) {
@@ -10,7 +10,7 @@ function Main(props) {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    Api.getUserInfo()
+    api.getUserInfo()
       .then((user) => {
         setUserName(user.name);
         setUserDescription(user.about);
@@ -19,17 +19,17 @@ function Main(props) {
       .catch((err) => {
         console.log(err);
       })
-  })
+  },[])
 
   React.useEffect(() => {
-    Api.getCards()
+    api.getCards()
     .then((data) => {
       setCards(data);
     })
     .catch((err) => {
       console.log(err);
     })
-  })
+  },[])
 
   return (
     <main>
