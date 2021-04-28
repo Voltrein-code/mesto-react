@@ -31,6 +31,7 @@ export default function EditAvatarPopup(props) {
       onClose={props.onClose}
       onSubmit={handleSubmit}
       isDisabled={!isElementValid}
+      isLoading={props.isLoading}
     >
         <input
         type="url"

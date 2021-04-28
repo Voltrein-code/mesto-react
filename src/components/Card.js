@@ -25,7 +25,7 @@ export default function Card(props) {
   }
 
   function handleDeleteClick() {
-    props.onCardDelete(props.card)
+    props.onCardDeleteClick(props.card)
   }
 
   return (

@@ -2,12 +2,12 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
 import ImagePopup from './ImagePopup';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
+import DeletePopup from './DeletePopup';
 import api from '../utils/api';
 
 export default function App() {
@@ -16,17 +16,25 @@ export default function App() {
   const [isEditProfilePopupOpen, setEditProfileState] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlaceState] = React.useState(false);
   const [isImagePopupOpen, setImagePopupState] = React.useState(false);
+  const [isDeletePopupOpen, setDeletePopupState] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
+  const [isAvatarLoading, setAvatarLoading] = React.useState(false);
+  const [isUserInfoLoading, setUserInfoLoading] = React.useState(false);
+  const [isButtonSubmitLoading, setButtonSubmitLoading] = React.useState(false);
 
   React.useEffect(() => {
+    setUserInfoLoading(true);
     api.getUserInfo()
       .then((data) => {
         setCurrentUser(data);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setUserInfoLoading(false);
       })
   }, [])
 
@@ -62,10 +70,13 @@ export default function App() {
     setEditProfileState(false);
     setAddPlaceState(false);
     setImagePopupState(false);
+    setDeletePopupState(false);
     setSelectedCard({});
   }
 
   function handleUpdateUser(updatedUserInfo) {
+    setButtonSubmitLoading(true);
+    setUserInfoLoading(true);
     api.setUserInfo(updatedUserInfo)
       .then((newUserInfo) => {
         setCurrentUser(newUserInfo);
@@ -74,9 +85,15 @@ export default function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => {
+        setUserInfoLoading(false);
+        setButtonSubmitLoading(false);
+      })
   }
 
   function handleUpdateAvatar(updatedAvatar) {
+    setAvatarLoading(true);
+    setButtonSubmitLoading(true);
     api.setAvatar(updatedAvatar)
       .then((newAvatar) => {
         setCurrentUser(newAvatar);
@@ -84,6 +101,10 @@ export default function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setAvatarLoading(false);
+        setButtonSubmitLoading(false);
       })
   }
 
@@ -101,19 +122,39 @@ export default function App() {
   }
 
   function handleCardDelete(card) {
+    setButtonSubmitLoading(true);
     api.deleteCard(card._id)
       .then((updateCard) => {
         const updatedCards = cards.filter((c) => (c._id === card._id ? '' : updateCard))
         setCards(updatedCards)
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setButtonSubmitLoading(false);
       })
   }
 
   function handleAddPlace(card) {
+    setButtonSubmitLoading(true);
     api.addCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setButtonSubmitLoading(false);
+      })
+  }
+
+  function handleCardDeleteClick(card) {
+    setSelectedCard(card);
+    setDeletePopupState(true);
   }
 
   return (
@@ -129,8 +170,10 @@ export default function App() {
           onEditAvatar={handleEditAvatarClick}
           onCardClick={handleCardClick}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
+          onCardDeleteClick={handleCardDeleteClick}
           cards={cards}
+          isAvatarLoading={isAvatarLoading}
+          isUserInfoLoading={isUserInfoLoading}
         />
 
         <Footer />
@@ -139,24 +182,30 @@ export default function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={isButtonSubmitLoading}
         />
 
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlace}
+          isLoading={isButtonSubmitLoading}
         />
 
         <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
+        isLoading={isButtonSubmitLoading}
         />
 
-        <PopupWithForm
-          name="avatar"
-          title="Вы уверены?"
-          buttonText="Да" />
+        <DeletePopup
+          isOpen={isDeletePopupOpen}
+          onClose={closeAllPopups}
+          onDeleteCard={handleCardDelete}
+          isLoading={isButtonSubmitLoading}
+          selectedCard={selectedCard}
+        />
 
         <ImagePopup
           isOpen={isImagePopupOpen}
