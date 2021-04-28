@@ -33,6 +33,7 @@
 @import './blocks/popup/__caption/popup__caption.css';
 @import './blocks/popup/__text/popup__text.css';
 @import './blocks/popup/__text-error/popup__text-error.css';
+@import './blocks/popup/__text-error/_visible/popup__text-error_visible.css';
 @import './blocks/popup/__text/_type/popup__text_type_error.css';
 @import './blocks/popup/__submit/popup__submit.css';
 @import './blocks/popup/__submit/_active/popup__submit_active.css';

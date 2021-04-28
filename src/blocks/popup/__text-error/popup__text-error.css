@@ -6,6 +6,7 @@
   line-height: 12px;
   color: #FF0000;
   min-height: 24px;
+  visibility: hidden;
 }
 
 @media screen and (max-width: 550px) {

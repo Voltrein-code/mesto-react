@@ -76,6 +76,14 @@ class Api {
       .then(this._getServerResponse);
   }
 
+  changeLikeCardStatus(isLiked, id) {
+    if(isLiked) {
+      return this.dislike(id);
+    } else {
+      return this.like(id);
+    }
+  }
+
   setAvatar(data) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
