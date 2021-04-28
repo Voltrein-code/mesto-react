@@ -25,6 +25,7 @@ export default function App() {
   const [isButtonSubmitLoading, setButtonSubmitLoading] = React.useState(false);
 
   React.useEffect(() => {
+    setAvatarLoading(true);
     setUserInfoLoading(true);
     api.getUserInfo()
       .then((data) => {
@@ -35,6 +36,7 @@ export default function App() {
       })
       .finally(() => {
         setUserInfoLoading(false);
+        setAvatarLoading(false);
       })
   }, [])
 
@@ -125,7 +127,7 @@ export default function App() {
     setButtonSubmitLoading(true);
     api.deleteCard(card._id)
       .then((updateCard) => {
-        const updatedCards = cards.filter((c) => (c._id === card._id ? '' : updateCard))
+        const updatedCards = cards.filter((c) => (c._id !== card._id ? '' : updateCard))
         setCards(updatedCards)
         closeAllPopups();
       })

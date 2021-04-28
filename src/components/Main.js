@@ -10,14 +10,14 @@ export default function Main(props) {
     <main>
       <section className="profile">
         <div className="profile__avatar-container">
-          <img src={currentUser.avatar} alt={props.isLoading ? "Загрузка..." : `Аватар пользователя: ${currentUser.name}`}
+          <img src={currentUser.avatar} alt={props.isAvatarLoading ? "Загрузка..." : `Аватар пользователя: ${currentUser.name}`}
             className="profile__avatar" />
           <button className="profile__avatar-edit" type="button" onClick={props.onEditAvatar}></button>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{props.isLoading ? "Загрузка..." : currentUser.name}</h1>
+          <h1 className="profile__name">{props.isUserInfoLoading ? "Загрузка..." : currentUser.name}</h1>
           <button className="profile__edit-button" type="button" onClick={props.onEditProfile}></button>
-          <p className="profile__caption">{props.isLoading ? "Загрузка..." : currentUser.about}</p>
+          <p className="profile__caption">{props.isUserInfoLoading ? "Загрузка..." : currentUser.about}</p>
         </div>
         <button className="profile__add-button" type="button" onClick={props.onAddPlace}></button>
       </section>

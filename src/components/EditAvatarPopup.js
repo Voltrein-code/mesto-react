@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import FormValidator from '../hooks/FormValidator';
+import useFormValidator from '../hooks/FormValidator';
 
 export default function EditAvatarPopup(props) {
 
@@ -10,7 +10,7 @@ export default function EditAvatarPopup(props) {
     isElementValid,
     handleElementChange,
     resetFormInputs
-  } = FormValidator({});
+  } = useFormValidator({});
 
   function handleSubmit(e) {
     e.preventDefault();

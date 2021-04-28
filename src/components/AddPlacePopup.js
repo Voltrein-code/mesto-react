@@ -1,5 +1,5 @@
 import React from 'react';
-import FormValidator from '../hooks/FormValidator';
+import useFormValidator from '../hooks/FormValidator';
 import PopupWithForm from './PopupWithForm';
 
 export default function AddPlacePopup(props) {
@@ -10,7 +10,7 @@ export default function AddPlacePopup(props) {
     isElementValid,
     handleElementChange,
     resetFormInputs
-  } = FormValidator({});
+  } = useFormValidator({});
 
   function handleSubmit(e) {
     e.preventDefault();

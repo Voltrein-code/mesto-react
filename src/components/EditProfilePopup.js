@@ -2,7 +2,7 @@ import React from 'react';
 
 import PopupWithForm from './PopupWithForm';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import FormValidator from '../hooks/FormValidator';
+import useFormValidator from '../hooks/FormValidator';
 
 export default function EditProfilePopup(props) {
 
@@ -12,7 +12,7 @@ export default function EditProfilePopup(props) {
     isElementValid,
     handleElementChange,
     resetFormInputs
-  } = FormValidator({});
+  } = useFormValidator({});
 
   const currentUser = React.useContext(CurrentUserContext);
 
