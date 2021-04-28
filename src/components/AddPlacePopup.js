@@ -1,5 +1,5 @@
 import React from 'react';
-import useFormValidator from '../hooks/FormValidator';
+import useFormValidator from '../hooks/useFormValidator';
 import PopupWithForm from './PopupWithForm';
 
 export default function AddPlacePopup(props) {

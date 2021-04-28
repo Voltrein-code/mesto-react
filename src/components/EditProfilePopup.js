@@ -2,7 +2,7 @@ import React from 'react';
 
 import PopupWithForm from './PopupWithForm';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import useFormValidator from '../hooks/FormValidator';
+import useFormValidator from '../hooks/useFormValidator';
 
 export default function EditProfilePopup(props) {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import useFormValidator from '../hooks/FormValidator';
+import useFormValidator from '../hooks/useFormValidator';
 
 export default function EditAvatarPopup(props) {
 

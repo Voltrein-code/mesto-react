@@ -126,8 +126,8 @@ export default function App() {
   function handleCardDelete(card) {
     setButtonSubmitLoading(true);
     api.deleteCard(card._id)
-      .then((updateCard) => {
-        const updatedCards = cards.filter((c) => (c._id !== card._id ? '' : updateCard))
+      .then(() => {
+        const updatedCards = cards.filter((c) => (c._id !== card._id))
         setCards(updatedCards)
         closeAllPopups();
       })
